@@ -57,12 +57,12 @@ export class UsersController {
       const usersData = [...Users];
       const user = usersData.find((user) => user.id === id);
       if (user) {
-        return res.status(200).send({
+        return res.status(400).send({
           ok: true,
           message: "usuario encontrado",
         });
       }
-      return res.status(200).send({
+      return res.status(404).send({
         ok: false,
         message: "usuario não encontrado",
       });
