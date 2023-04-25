@@ -2,7 +2,7 @@ import express from "express";
 import { userRoutes } from "./routes/users.routes";
 import * as dotenv from "dotenv";
 import cors from "cors";
-import { DatabaseConnection } from "./database/database.connection";
+import { DatabaseConnection } from "./database/config/database.connection";
 import "reflect-metadata";
 
 dotenv.config();

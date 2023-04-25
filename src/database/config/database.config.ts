@@ -14,4 +14,6 @@ export default new DataSource({
     rejectUnauthorized: false,
   },
   synchronize: false,
+  entities: ["src/database/entities/**/*.ts"],
+  schema: "reccados",
 });
