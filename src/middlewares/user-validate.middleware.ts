@@ -40,7 +40,7 @@ export class UserValidateMiddleware {
 
       next();
     } catch (error: any) {
-      return RequestError.ClientError(res, error);
+      return RequestError.ServerError(res, error);
     }
   }
   public static ValidateLogin(req: Request, res: Response, next: NextFunction) {
@@ -49,14 +49,14 @@ export class UserValidateMiddleware {
       const usersData = [...Users];
       const emailExists = usersData.find((user) => user.email === email);
       if (!emailExists) {
-        return res.status(403).send({
+        return res.status(400).send({
           ok: false,
           message: "Email ou senha incorretos",
         });
       }
 
       if (emailExists.password !== password) {
-        return res.status(403).send({
+        return res.status(400).send({
           ok: false,
           message: "Email ou senha incorretos",
         });
@@ -64,7 +64,7 @@ export class UserValidateMiddleware {
 
       next();
     } catch (error: any) {
-      return RequestError.ClientError(res, error);
+      return RequestError.ServerError(res, error);
     }
   }
 }

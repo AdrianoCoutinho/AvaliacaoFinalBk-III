@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { NotesController } from "../controllers/notes.controlle";
+import { NotesController } from "../controllers/notes.controller";
 import { UsersController } from "../controllers/users.controller";
 import { UserValidateMiddleware } from "../middlewares/user-validate.middleware";
 

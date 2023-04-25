@@ -18,7 +18,7 @@ export class NotesController {
       Users[userExists].notes = [...Users[userExists].notes, newNote];
       return RequestSuccess.created(res, "recado", newNote.toJson());
     } catch (error: any) {
-      return RequestError.ClientError(res, error);
+      return RequestError.ServerError(res, error);
     }
   }
 
@@ -60,7 +60,7 @@ export class NotesController {
         })),
       });
     } catch (error: any) {
-      return RequestError.ClientError(res, error);
+      return RequestError.ServerError(res, error);
     }
   }
 
@@ -101,7 +101,7 @@ export class NotesController {
         updatedNote.toJson()
       );
     } catch (error: any) {
-      return RequestError.ClientError(res, error);
+      return RequestError.ServerError(res, error);
     }
   }
 
@@ -125,7 +125,7 @@ export class NotesController {
         note: deletedNote[0].toJson(),
       });
     } catch (error: any) {
-      return RequestError.ClientError(res, error);
+      return RequestError.ServerError(res, error);
     }
   }
 }

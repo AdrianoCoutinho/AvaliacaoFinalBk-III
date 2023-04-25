@@ -1,7 +1,7 @@
 import { Response } from "express";
 
 export class RequestError {
-  public static ClientError(res: Response, error: any) {
+  public static ServerError(res: Response, error: any) {
     return res.status(500).send({
       ok: false,
       message: error.toString(),

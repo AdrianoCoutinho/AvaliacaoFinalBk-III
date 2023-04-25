@@ -14,7 +14,7 @@ export class UsersController {
         data: usersData,
       });
     } catch (error: any) {
-      return RequestError.ClientError(res, error);
+      return RequestError.ServerError(res, error);
     }
   }
 
@@ -26,7 +26,7 @@ export class UsersController {
 
       return RequestSuccess.created(res, "usuário", user.toJson());
     } catch (error: any) {
-      return RequestError.ClientError(res, error);
+      return RequestError.ServerError(res, error);
     }
   }
 
@@ -41,7 +41,7 @@ export class UsersController {
         name: user?.name,
       });
     } catch (error: any) {
-      return RequestError.ClientError(res, error);
+      return RequestError.ServerError(res, error);
     }
   }
 
@@ -57,7 +57,7 @@ export class UsersController {
       const usersData = [...Users];
       const user = usersData.find((user) => user.id === id);
       if (user) {
-        return res.status(400).send({
+        return res.status(200).send({
           ok: true,
           message: "usuario encontrado",
         });
@@ -67,7 +67,7 @@ export class UsersController {
         message: "usuario não encontrado",
       });
     } catch (error: any) {
-      return RequestError.ClientError(res, error);
+      return RequestError.ServerError(res, error);
     }
   }
 }
