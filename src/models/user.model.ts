@@ -56,4 +56,17 @@ export class User {
       notes: this._notes,
     };
   }
+
+  public static create(
+    id: string,
+    name: string,
+    email: string,
+    password: string,
+    notes?: Note[]
+  ) {
+    const user = new User(name, email, password, notes);
+    user._id = id;
+
+    return user;
+  }
 }

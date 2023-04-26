@@ -3,15 +3,19 @@ import { Users } from "../database/users";
 import { User } from "../models/user.model";
 import { RequestError } from "../statusResponses/Error";
 import { RequestSuccess } from "../statusResponses/Success";
+import { UserDatabase } from "../database/repositories/user.database";
 
 export class UsersController {
-  public list(req: Request, res: Response) {
+  public async list(req: Request, res: Response) {
     try {
-      const usersData = [...Users];
+      const usersData = new UserDatabase();
+      const users = await usersData.listEntity();
+      const result = users.map((user) => user.toJson());
+
       return res.status(200).send({
-        ok: "true",
-        message: "users listed",
-        data: usersData,
+        ok: true,
+        message: "Lista de usuários obtida",
+        data: result,
       });
     } catch (error: any) {
       return RequestError.ServerError(res, error);
