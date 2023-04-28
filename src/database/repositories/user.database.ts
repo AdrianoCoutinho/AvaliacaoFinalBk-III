@@ -1,6 +1,7 @@
 import { DatabaseConnection } from "../config/database.connection";
 import { User } from "../../models/user.model";
 import { UserEntity } from "../entities/user.entity";
+import { NoteDatabase } from "./note.database";
 
 export class UserDatabase {
   private repository = DatabaseConnection.connection.getRepository(UserEntity);
@@ -45,12 +46,18 @@ export class UserDatabase {
   }
 
   private mapEntityToModel(entity: UserEntity): User {
+    const notesEntity = entity.notes ?? [];
+
+    const notes = notesEntity.map((item) =>
+      NoteDatabase.mapEntityToModel(item)
+    );
+
     return User.create(
       entity.id,
       entity.name,
       entity.email,
       entity.password,
-      entity.notes
+      notes
     );
   }
 }
