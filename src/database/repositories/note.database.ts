@@ -37,6 +37,6 @@ export class NoteDatabase {
   }
 
   public static mapEntityToModel(entity: NoteEntity): Note {
-    return Note.create(entity.detail, entity.description);
+    return Note.create(entity.id, entity.detail, entity.description);
   }
 }

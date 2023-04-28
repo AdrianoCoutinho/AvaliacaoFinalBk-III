@@ -10,9 +10,7 @@ export class UserDatabase {
     const connection = DatabaseConnection.connection;
     const repository = connection.getRepository(UserEntity);
 
-    const result = await repository.find({
-      relations: ["notes"],
-    });
+    const result = await repository.find();
 
     return result.map((user: any) => this.mapEntityToModel(user));
   }
@@ -21,10 +19,7 @@ export class UserDatabase {
     const connection = DatabaseConnection.connection;
     const repository = connection.getRepository(UserEntity);
 
-    const result = await repository.findOne({
-      where: { id: id },
-      relations: ["notes"],
-    });
+    const result = await repository.findOneBy({ id });
 
     if (result === null) {
       return null;

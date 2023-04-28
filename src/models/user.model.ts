@@ -49,11 +49,20 @@ export class User {
   }
 
   public toJson() {
+    const notesJson = this._notes?.map((note) => {
+      return {
+        id: note.id,
+        detail: note.detail,
+        description: note.description,
+        arquived: note.arquived,
+      };
+    });
+
     return {
       id: this._id,
       name: this._name,
       email: this._email,
-      notes: this._notes,
+      notes: notesJson || [],
     };
   }
 

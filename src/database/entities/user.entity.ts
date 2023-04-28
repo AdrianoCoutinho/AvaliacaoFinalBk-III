@@ -24,6 +24,8 @@ export class UserEntity extends BaseEntity {
   })
   password: string;
 
-  @OneToMany(() => NoteEntity, (note) => note.user)
+  @OneToMany(() => NoteEntity, (note) => note.user, {
+    eager: true,
+  })
   notes: NoteEntity[];
 }

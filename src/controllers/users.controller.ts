@@ -34,8 +34,6 @@ export class UsersController {
         return RequestError.notFound(res, "Usuário");
       }
 
-      console.log(user.notes);
-
       return res.status(200).send({
         ok: true,
         message: "Lista de usuários obtida",

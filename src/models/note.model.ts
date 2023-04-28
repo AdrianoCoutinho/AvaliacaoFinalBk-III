@@ -45,8 +45,9 @@ export class Note {
     };
   }
 
-  public static create(detail: string, description: string) {
+  public static create(id: string, detail: string, description: string) {
     const newNote = new Note(detail, description);
+    newNote._id = id;
     return newNote;
   }
 }
