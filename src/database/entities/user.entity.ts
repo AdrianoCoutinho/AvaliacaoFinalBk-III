@@ -1,9 +1,10 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { BaseEntity, Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
+import { NoteEntity } from "./note.entity";
 
 @Entity({
   name: "user",
 })
-export class UserEntity {
+export class UserEntity extends BaseEntity {
   @PrimaryColumn()
   id: string;
 
@@ -22,4 +23,7 @@ export class UserEntity {
     length: 32,
   })
   password: string;
+
+  @OneToMany(() => NoteEntity, (note) => note.user)
+  notes: NoteEntity[];
 }

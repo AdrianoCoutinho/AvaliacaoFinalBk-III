@@ -62,11 +62,10 @@ export class User {
     name: string,
     email: string,
     password: string,
-    notes?: Note[]
+    notes?: any[]
   ) {
     const user = new User(name, email, password, notes);
     user._id = id;
-
     return user;
   }
 }

@@ -44,4 +44,9 @@ export class Note {
       arquived: this._arquived,
     };
   }
+
+  public static create(detail: string, description: string) {
+    const newNote = new Note(detail, description);
+    return newNote;
+  }
 }
