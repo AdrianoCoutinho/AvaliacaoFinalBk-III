@@ -2,10 +2,12 @@ import { v4 as createUuid } from "uuid";
 
 export class Note {
   private _id: string;
-  private _arquived: boolean;
-  constructor(private _detail: string, private _description: string) {
+  constructor(
+    private _detail: string,
+    private _description: string,
+    private _arquived: boolean
+  ) {
     this._id = createUuid();
-    this._arquived = false;
   }
 
   public get id() {
@@ -45,8 +47,13 @@ export class Note {
     };
   }
 
-  public static create(id: string, detail: string, description: string) {
-    const newNote = new Note(detail, description);
+  public static create(
+    id: string,
+    detail: string,
+    description: string,
+    arquived: boolean
+  ) {
+    const newNote = new Note(detail, description, arquived);
     newNote._id = id;
     return newNote;
   }

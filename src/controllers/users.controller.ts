@@ -60,24 +60,28 @@ export class UsersController {
     }
   }
 
-  // public login(req: Request, res: Response) {
-  //   try {
-  //     const { email } = req.body;
-  //     const usersData = [...Users];
-  //     const user = usersData.find((user) => user.email === email);
+  public async login(req: Request, res: Response) {
+    try {
+      const { email, password } = req.body;
 
-  //     return RequestSuccess.ok(res, "Logado com sucesso", {
-  //       id: user?.id,
-  //       name: user?.name,
-  //     });
-  //   } catch (error: any) {
-  //     return RequestError.ServerError(res, error);
-  //   }
-  // }
+      const usersData = new UserDatabase();
 
-  // public getByEmail(email: string) {
-  //   const usersData = [...Users];
-  //   const emailExists = usersData.find((user) => user.email === email);
-  //   return emailExists;
-  // }
+      const user = await usersData.getByEmail(email);
+
+      if (!user) {
+        return RequestError.notFound(res, "usuario");
+      }
+
+      if (password !== user.password) {
+        return RequestError.genericError(res, "email ou senha incorretos");
+      }
+
+      return RequestSuccess.ok(res, "Logado com sucesso", {
+        id: user.id,
+        name: user.name,
+      });
+    } catch (error: any) {
+      return RequestError.ServerError(res, error);
+    }
+  }
 }

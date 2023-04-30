@@ -40,6 +40,18 @@ export class UserDatabase {
     return this.mapEntityToModel(result);
   }
 
+  public async getByEmail(email: string) {
+    const connection = DatabaseConnection.connection;
+    const repository = connection.getRepository(UserEntity);
+
+    const result = await repository.findOneBy({ email });
+
+    if (result === null) {
+      return null;
+    }
+    return this.mapEntityToModel(result);
+  }
+
   private mapEntityToModel(entity: UserEntity): User {
     const notesEntity = entity.notes ?? [];
 

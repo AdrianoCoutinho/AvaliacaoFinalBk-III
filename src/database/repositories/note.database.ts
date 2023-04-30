@@ -32,11 +32,44 @@ export class NoteDatabase {
     return NoteDatabase.mapEntityToModel(result);
   }
 
+  public async updateWithSave(id: string, note: any): Promise<number> {
+    const noteEntity = await this.repository.findOneBy({
+      id,
+    });
+
+    if (!noteEntity) {
+      return 0;
+    }
+
+    const { detail, description, arquived } = note;
+
+    if (detail != undefined) {
+      noteEntity.detail = detail;
+    }
+
+    if (description != undefined) {
+      noteEntity.description = description;
+    }
+
+    if (arquived != undefined) {
+      noteEntity.arquived = arquived;
+    }
+
+    await this.repository.save(noteEntity);
+
+    return 1;
+  }
+
   public async delete(id: string) {
     const noteEntity = this.repository.delete({ id });
   }
 
   public static mapEntityToModel(entity: NoteEntity): Note {
-    return Note.create(entity.id, entity.detail, entity.description);
+    return Note.create(
+      entity.id,
+      entity.detail,
+      entity.description,
+      entity.arquived
+    );
   }
 }
