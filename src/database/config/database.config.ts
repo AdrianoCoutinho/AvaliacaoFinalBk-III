@@ -15,5 +15,6 @@ export default new DataSource({
   },
   synchronize: false,
   entities: ["src/database/entities/**/*.ts"],
-  schema: "reccados",
+  migrations: ["src/database/migrations/**/*.ts"],
+  schema: "reccadosMi",
 });

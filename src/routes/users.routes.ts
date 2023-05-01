@@ -29,5 +29,12 @@ export const userRoutes = () => {
 
   app.delete("/notes/:noteid", new NotesController().deleteNote);
 
+  app.all("/*", (req, res) => {
+    res.status(500).send({
+      ok: false,
+      message: "Rota inválida",
+    });
+  });
+
   return app;
 };

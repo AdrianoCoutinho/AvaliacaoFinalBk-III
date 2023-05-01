@@ -1,4 +1,11 @@
-import { BaseEntity, Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
+import {
+  BaseEntity,
+  BeforeUpdate,
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryColumn,
+} from "typeorm";
 import { NoteEntity } from "./note.entity";
 
 @Entity({
@@ -23,6 +30,25 @@ export class UserEntity extends BaseEntity {
     length: 32,
   })
   password: string;
+
+  @Column({
+    type: "timestamp",
+    default: () => "CURRENT_TIMESTAMP",
+    name: "created_at",
+  })
+  createdAt: Date;
+
+  @Column({
+    type: "timestamp",
+    default: () => "CURRENT_TIMESTAMP",
+    name: "updated_at",
+  })
+  updatedAt: Date;
+
+  @BeforeUpdate()
+  beforeUpdate() {
+    this.updatedAt = new Date();
+  }
 
   @OneToMany(() => NoteEntity, (note) => note.user, {
     eager: true,

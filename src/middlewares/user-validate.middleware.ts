@@ -21,6 +21,14 @@ export class UserValidateMiddleware {
       if (!password) {
         return RequestError.fieldNotProvided(res, "senha");
       }
+
+      if (password.length < 6) {
+        return RequestError.genericError(
+          res,
+          "senha precisar ter mais que 6 caracteres"
+        );
+      }
+
       if (!repassword) {
         return RequestError.fieldNotProvided(res, "repetir senha");
       }
