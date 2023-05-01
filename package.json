@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "api para o projeto em react",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --respawn ./src/index.ts",
