@@ -1,4 +1,4 @@
-import { NoteEntity } from "./note.entity";
+import NoteEntity from "../entities/note.entity";
 
 import {
   BaseEntity,
@@ -11,7 +11,7 @@ import {
 @Entity({
   name: "user",
 })
-export class UserEntity extends BaseEntity {
+export default class UserEntity extends BaseEntity {
   @PrimaryColumn()
   id: string;
 

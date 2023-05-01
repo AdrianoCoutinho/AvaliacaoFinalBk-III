@@ -1,6 +1,6 @@
 import { DatabaseConnection } from "../config/database.connection";
 import { User } from "../../models/user.model";
-import { UserEntity } from "../entities/user.entity";
+import UserEntity from "../entities/user.entity";
 import { NoteDatabase } from "./note.database";
 
 export class UserDatabase {
