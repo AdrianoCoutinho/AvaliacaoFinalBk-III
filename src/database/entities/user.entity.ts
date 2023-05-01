@@ -1,3 +1,5 @@
+import { NoteEntity } from "./note.entity";
+
 import {
   BaseEntity,
   BeforeUpdate,
@@ -6,8 +8,6 @@ import {
   OneToMany,
   PrimaryColumn,
 } from "typeorm";
-import { NoteEntity } from "./note.entity";
-
 @Entity({
   name: "user",
 })
