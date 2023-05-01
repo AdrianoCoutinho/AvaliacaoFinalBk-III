@@ -1,6 +1,6 @@
 import { Note } from "../../models/note.model";
 import { DatabaseConnection } from "../config/database.connection";
-import NoteEntity from "../entities/note.entity";
+import { NoteEntity } from "../entities/note.entity";
 
 export class NoteDatabase {
   private repository = DatabaseConnection.connection.getRepository(NoteEntity);
