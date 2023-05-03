@@ -3,6 +3,14 @@ import { DataSource } from "typeorm";
 
 dontenv.config();
 
+let entities = "src/database/entities/**/*.ts";
+let migrations = "src/database/migrations/**/*.ts";
+
+if (process.env.API_ENV === "production") {
+  entities = "build/database/entities/**/*.js";
+  migrations = "build/database/migrations/**/*.js";
+}
+
 export default new DataSource({
   type: "postgres",
   host: process.env.DB_HOST,
@@ -14,7 +22,7 @@ export default new DataSource({
     rejectUnauthorized: false,
   },
   synchronize: false,
-  entities: ["src/database/entities/**/*.ts"],
-  migrations: ["src/database/migrations/**/*.ts"],
+  entities: [entities],
+  migrations: [migrations],
   schema: "reccadosMi",
 });
