@@ -13,13 +13,13 @@ export class UserValidateMiddleware {
       const { name, email, password, repassword } = req.body;
 
       if (!name) {
-        return RequestError.fieldNotProvided(res, "nome");
+        return RequestError.fieldNotProvided(res, "name");
       }
       if (!email) {
         return RequestError.fieldNotProvided(res, "email");
       }
       if (!password) {
-        return RequestError.fieldNotProvided(res, "senha");
+        return RequestError.fieldNotProvided(res, "password");
       }
 
       if (password.length < 6) {
@@ -30,7 +30,7 @@ export class UserValidateMiddleware {
       }
 
       if (!repassword) {
-        return RequestError.fieldNotProvided(res, "repetir senha");
+        return RequestError.fieldNotProvided(res, "repassword senha");
       }
       if (repassword != password) {
         return RequestError.genericError(res, "senhas não coincidem");
