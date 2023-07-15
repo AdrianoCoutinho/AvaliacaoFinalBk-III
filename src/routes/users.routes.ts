@@ -5,6 +5,15 @@ import { UserValidateMiddleware } from "../middlewares/user-validate.middleware"
 
 export const userRoutes = () => {
   const app = Router();
+
+  ////utilizado para "acordar" a api no render, retirar se for usar em produção
+  app.get("/status", (req, res) => {
+    res.status(200).send({
+      ok: true,
+      message: "servidor ativo",
+    });
+  });
+  ///////////////////////////////////////////////////////////////////////////////
   app.post(
     "/",
     UserValidateMiddleware.ValidateRegister,
